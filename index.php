@@ -27,7 +27,7 @@
                     <input type = "submit" class = "btn" name = "submit" value = "Login" autocomplete = "off" required>
                 </div>
                 <div class = "links">
-                    Don't have account? <a href = "register.html">Sign Up Now</a>
+                    Don't have account? <a href = "index.html">Sign Up Now</a>
             </form>
         </div>
        </div>
