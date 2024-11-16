@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+        <meta name = "viewport" content = "width-device-width, initial-scale=1.0">
+        <link rel = "stylesheet" href = "forms-design.css">
+        <title>Incident Report Form</title>
+    </head>
+    <body>
+        <div class="incident-report-form">
+            <h1>Incident Report Form</h1>
+            <form action="" method="post">
+                <label for="incident-type">Incident Type:</label>
+                <select id="incident-type" name="incident-type" required>
+                    <option value="missed-pickup">Missed Pickup</option>
+                    <option value="illegal-dumping">Illegal Dumping</option>
+                    <option value="vehicle-breakdown">Vehicle Breakdown</option>
+                </select>
+
+                <label for="incident-location">Incident Location:</label>
+                <input type="text" id="incident-location" name="incident-location" required>
+
+                <label for="incident-date">Incident Date:</label>
+                <input type="datetime-local" id="incident-date" name="incident-date" required>
+
+                <label for="incident-description">Incident Description</label>
+                <textarea id="incident-description" name="incident-description" rows="2" required></textarea>
+
+                <label for="incident-photo">Upload Photo (Optional):</label>
+                <input type="file" id="incident-photo" name="incident-photo">
+
+                <button type="submit">Submit Report</button>
+            </form>
+        </div>
+    </body>
+</html>
