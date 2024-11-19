@@ -10,7 +10,6 @@
 <body>
        <div class = "container">
         <div class = "box form-box">
-
             <header>Sign Up</header>
             <form action = "" method = "post">
                 <div class = "field input">
@@ -38,9 +37,13 @@
                     <input type = "submit" class = "btn" name = "submit" value = "Login" required>
                 </div>
                 <div class = "links">
-                    Already a member? <a href = "index.html">Sign In</a>
+                    Already a member? <a href = "index.php">Sign In</a>
             </form>
         </div>
        </div>
 </body>
 </html>
+
+<?php
+
+?>
