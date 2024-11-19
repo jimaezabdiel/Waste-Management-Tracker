@@ -28,6 +28,12 @@
 
                 <button type="submit">Update Profile</button>
             </form>
+
+
+            <footer>
+                <p><a href="menu.php">Back to Dashboard</a></p> 
+            </footer>
+
         </div>
     </body>
 </html>
