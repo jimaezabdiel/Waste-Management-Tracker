@@ -1,12 +1,22 @@
 <?php
-   $servername = “localhost”;
-   $username = “your_username”;
-   $password = “your_password”;
-   $dbname = “your_database_name”;
- 
-$conn = new mysqli($servername, $username, $password, $dbname);
- 
-   If ($conn->connect_error) {
-     Die(“Connection failed: “ . $conn->connect_error);
+class Database {
+    private $host = "localhost";
+    private $db_name = "userdb";
+    private $username = "root";
+    private $password = "";
+    public $conn;
+
+    public function getConnect() {
+        $this->conn = null;
+
+        try {
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $exception) {
+            echo "Connection error: " . $exception->getMessage();
+        }
+
+        return $this->conn;
+    }
 }
 ?>
