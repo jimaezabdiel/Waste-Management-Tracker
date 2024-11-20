@@ -1,7 +1,7 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "userdb";
+    private $db_name = "waste_management";
     private $username = "root";
     private $password = "";
     public $conn;
