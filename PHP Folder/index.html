@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management Tracker || Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<div class="login-container">
+    <img src="images/title-tracker.png" alt="Waste Management Tracker" class="logo">
+    <h2>Waste Management Tracker</h2>
+    <form action="" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <div class="links">
+        <a href="forgot-password.php">Forgot Password?</a><br>
+        <a href="sign-up-page.php">Sign Up</a>
+    </div>
+
+        <?php if (isset($message)): ?>
+        <p><?php echo $message; ?></p>
+        <?php endif; ?>
+    </div>
+</div>
+
+</body>
+</html
