@@ -2,9 +2,13 @@
 
 // Db connection
  
-$sql = "SELECT * FROM waste_logs";
-$result = $conn->query($sql);
- 
+public function read(){
+        $query = "SELECT * FROM " .$this->waste_logs;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
 ?>
  
 <!DOCTYPE html>
