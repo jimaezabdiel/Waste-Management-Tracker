@@ -1,135 +1,163 @@
-/* Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-* {
-    padding: 0;
+/* Form Page Styling */
+body {
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    background-color: #f9f9f9;
 }
 
-/* Body Background */
-body {
-    background-color: #f4f7fa; /* Light Gray Background */
-    font-family: 'Open Sans', sans-serif;
+/* Header Styles (same as home page) */
+header {
+    background-color: #2c6b3f;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header .logo img {
+    width: 50px;
+}
+
+header .header-links {
+    display: flex;
+    gap: 25px;
+}
+
+header .header-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+header .header-links a:hover {
+    color: #d1e4c7;
+}
+
+/* Main content */
+main {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    color: #333;
+    min-height: calc(100vh - 160px);
+}
+
+/* Form Section */
+.collection-report-form,
+.incident-report-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 40px;
+}
+
+/* Form Heading */
+.collection-report-form h1,
+.incident-report-form h1 {
+    font-size: 30px;
+    color: #2c6b3f;
+    margin-bottom: 20px;
+}
+
+/* Form Field Styling */
+.field {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Field Label */
+.field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Input Field Styling */
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
     color: #333;
 }
 
-/* Centering the Form */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
-}
-
-/* Form Box Styling */
-.collection-report-form, .incident-report-form {
-    background-color: #2c6b3f; /* Dark Green Box */
-    padding: 40px 50px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 480px;
-    margin: auto;
-}
-
-/* Form Header Styling */
-.collection-report-form h1, .incident-report-form h1 {
-    font-size: 28px;
-    font-weight: 600;
-    text-align: center;
-    color: #ffffff; /* White Text */
-    margin-bottom: 20px;
-}
-
-/* Input Fields (Text, Date, Select, Textarea) */
-.collection-report-form .field, .incident-report-form .field {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.collection-report-form .input input,
-.incident-report-form .input input,
-.collection-report-form select,
-.incident-report-form select,
-.collection-report-form textarea,
-.incident-report-form textarea {
-    height: 45px;
-    padding: 0 15px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-}
-
-/* Input Fields on Focus */
-.collection-report-form .input input:focus,
-.incident-report-form .input input:focus,
-.collection-report-form select:focus,
-.incident-report-form select:focus,
-.collection-report-form textarea:focus,
-.incident-report-form textarea:focus {
-    border-color: #4CAF50; /* Lighter Green Border on Focus */
-}
-
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* Submit Button */
-button {
-    height: 45px;
-    background-color: #4CAF50; /* Lighter Green for Button */
+/* Button Styling */
+button.btn {
+    background-color: #2c6b3f;
     color: white;
+    padding: 12px 25px;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
     transition: background-color 0.3s ease;
-    padding: 0 20px;
-    width: 100%;
-    margin-top: 20px;
 }
 
-button:hover {
-    background-color: #45a049; /* Darker Green on Hover */
+button.btn:hover {
+    background-color: #1e4b2f;
 }
 
-/* Footer Links */
-footer p {
+/* Adjustments for Responsiveness */
+@media (max-width: 768px) {
+    main {
+        padding: 20px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+        font-size: 14px;
+    }
+
+    button.btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+footer {
+    background-color: #2c6b3f;
+    color: white;
+    padding: 20px 0;
     text-align: center;
-    margin-top: 20px;
 }
 
-footer a {
-    color: #2c6b3f; /* Dark Green for Links */
+footer .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+footer .footer-links ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+footer .footer-links ul li a {
+    color: white;
     text-decoration: none;
+    font-weight: 600;
 }
 
-footer a:hover {
-    text-decoration: underline;
+footer .footer-links ul li a:hover {
+    color: #d1e4c7;
 }
 
-/* Responsive Design */
-@media only screen and (max-width: 768px) {
-    .collection-report-form, .incident-report-form {
-        padding: 20px 25px;
-        width: 90%;
-    }
-
-    .collection-report-form h1, .incident-report-form h1 {
-        font-size: 24px;
-    }
-
-    .field {
-        margin-bottom: 15px;
-    }
+footer p {
+    margin-top: 10px;
+    font-size: 14px;
 }
