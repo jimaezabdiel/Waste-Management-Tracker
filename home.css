@@ -17,7 +17,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    box-shadow: 0 4px 6px rgba(0.1, 0.1, 0.1, 0.1); /* Light shadow for depth */
 }
 
 header .logo img {
@@ -53,16 +53,42 @@ main {
 .intro {
     text-align: center;
     margin-bottom: 40px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1);
 }
 
 .intro h1 {
     color: #2c6b3f; /* Dark green for headings */
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .intro p {
-    font-size: 18px;
+    font-size: 20px;
     color: #666;
+}
+
+.overview {
+    margin-bottom: 40px;
+}
+
+.overview-content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px rgba(0.1, 0.1 0.1, 0.1);
+}
+
+.overview h2 {
+    font-size: 24px;
+    color: #2c6b3f;
+    margin-bottom: 20px;
+}
+
+.overview {
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 
 /* Waste Statistics Section */
@@ -74,17 +100,17 @@ main {
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1);
 }
 
 .stats h2 {
-    font-size: 28px;
+    font-size: 24px;
     color: #2c6b3f;
     margin-bottom: 20px;
 }
 
 .stat {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 15px;
 }
 
@@ -98,11 +124,11 @@ main {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1);
 }
 
 .tips h2 {
-    font-size: 28px;
+    font-size: 24px;
     color: #2c6b3f;
     margin-bottom: 20px;
 }
@@ -113,8 +139,30 @@ main {
 }
 
 .tips ul li {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 10px;
+}
+
+.references {
+    margin-bottom: 40px;
+}
+
+.references-content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1);
+}
+
+.references h2 {
+    font-size: 24px;
+    color: #2c6b3f;
+    margin-bottom: 20px;
+}
+
+.references {
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 
 
