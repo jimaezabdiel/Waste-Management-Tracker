@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incident Report Form</title>
-    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="forms.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,10 +13,10 @@
             <img src="logo.png" alt="Logo">
         </div>
         <div class="header-links">
-            <a href="home.html">Home</a>
+            <a href="home.php">Home</a>
             <a href="profile.php">Profile</a>
-            <a href="collection.html">Waste Collection</a>
-            <a href="incident-report.html">Incident Report</a>
+            <a href="collection.php">Waste Collection</a>
+            <a href="incident-report.php">Incident Report</a>
             <a href="about.php">About Us</a>
             <a href="contact.php">Contact</a>
         </div>

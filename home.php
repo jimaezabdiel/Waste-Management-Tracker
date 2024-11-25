@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Ensure the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    // If the user is not logged in, redirect to the login page
+    header("Location: login.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +27,8 @@
         <div class="header-links">
             <a href="#">Home</a>
             <a href="#">Profile</a>
-            <a href="collection.html">Waste Collection</a>
-            <a href="incident-report.html">Incident Report</a>
+            <a href="waste-collection.php">Waste Collection</a>
+            <a href="incident-report.php">Incident Report</a>
             <a href="#">About Us</a>
             <a href="#">Contact</a>
         </div>
