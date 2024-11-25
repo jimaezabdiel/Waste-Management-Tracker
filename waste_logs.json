@@ -1,0 +1,18 @@
+[
+    {
+        "date": "2024-11-25",
+        "waste_type": "hazardous-waste",
+        "quantity": "1",
+        "location": "Brgy. Mojon Tampoy",
+        "disposal_method": "incineration",
+        "notes": ""
+    },
+    {
+        "date": "2024-11-25",
+        "waste_type": "hazardous-waste",
+        "quantity": "1",
+        "location": "Brgy. Mojon Tampoy",
+        "disposal_method": "incineration",
+        "notes": ""
+    }
+]
