@@ -1,65 +1,60 @@
 <?php
-// Start the session
-session_start();
+// Initialize the $message variable
+$message = "";
 
-// Path to the JSON file where user data is stored
-$user_file_path = "users.json";
-$message = ''; // To store any messages (success or error)
+// Database connection details
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "user_data";
 
-// Check if the form is submitted
-if (isset($_POST['submit'])) {
-    // Get form data
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
-    
-    // Check if the users.json file exists
-    if (file_exists($user_file_path)) {
-        // Read the existing data from the file
-        $json_data = file_get_contents($user_file_path);
-        $users = json_decode($json_data, true); // Decode JSON into an associative array
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Check if username exists
-        $user_found = false;
-        foreach ($users as $user) {
-            if ($user['username'] === $username) {
-                $user_found = true;
-                // Verify the password
-                if (password_verify($password, $user['password'])) {
-                    // Login success: set session variable
-                    $_SESSION['user_id'] = $username;
-                    $_SESSION['user_email'] = $user['email'];
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                    // Set success message
-                    $message = "You have successfully logged in.";
-                    $redirect_button = "<a href='home.php'><button>Go to Home</button></a>";
+// Handle login request
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get data from form
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-                    // Output message and button and stop further execution
-                    echo $message . "<br>" . $redirect_button;
-                    exit; // Stop further execution after setting the message
-                } else {
-                    // Incorrect password
-                    $message = "Error: Invalid password. Please try again.";
-                    $redirect_button = "<a href='login.php'><button>Try Again</button></a>";
-                    echo $message . "<br>" . $redirect_button;
-                    exit;
-                }
-            }
-        }
+    // Prepare SQL query to fetch user data
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email); 
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        // Username not found
-        if (!$user_found) {
-            $message = "Error: Username not found. Please try again.";
-            $redirect_button = "<a href='login.php'><button>Try Again</button></a>";
-            echo $message . "<br>" . $redirect_button;
-            exit;
+    // Check if user exists
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        // Verify the password
+        if (password_verify($password, $user['password'])) {
+            // Successful login, start session
+            session_start();
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+
+            // Set the message to trigger SweetAlert2
+            $message = "success";
+        } else {
+            // Set the error message for invalid password
+            $message = "error_invalid_password";
         }
     } else {
-        $message = "Error: No user data found. Please try again later.";
-        $redirect_button = "<a href='login.php'><button>Try Again</button></a>";
-        echo $message . "<br>" . $redirect_button;
-        exit;
+        // Set the error message for no user found
+        $message = "error_no_user_found";
     }
+
+    // Close the prepared statement
+    $stmt->close();
 }
+
+// Close connection
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -68,25 +63,83 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
-    <h2>Login</h2>
-    
-    <?php if (!$message): ?>
-        <!-- Form displayed only when there are no messages -->
-        <form action="login.php" method="POST">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" required><br><br>
-
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required><br><br>
-
-            <button type="submit" name="submit">Login</button>
-
-            <div class = "links">
-            Don't have account? <a href = "register.php">Sign Up Now</a>
+    <!-- Main content wrapper -->
+    <div class="login-container">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
             </div>
-        </form>
-    <?php endif; ?>
+        </header>
+
+        <!-- Login form -->
+        <main>
+            <div class="form-section">
+                <div class="box">
+                    <h1>Login</h1>
+                    <form action="login.php" method="POST">
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" required>
+                        </div>
+
+                        <button class="btn" type="submit" name="submit">Login</button>
+
+                        <div class="links">
+                            Don't have an account? <a href="register.php">Sign Up Now</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Your Website</p>
+        </footer>
+    </div>
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        // Check the PHP message for success or error
+        <?php if ($message == "success"): ?>
+            // Show SweetAlert2 success message and redirect
+            Swal.fire({
+                title: 'Login Successful!',
+                text: 'Redirecting to homepage...',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2000 // Time before redirecting (in ms)
+            }).then(() => {
+                // Redirect to homepage after the popup closes
+                window.location.href = "home.php"; // Replace "home.php" with your homepage URL
+            });
+        <?php elseif ($message == "error_invalid_password"): ?>
+            // Show error alert for invalid password
+            Swal.fire({
+                title: 'Error',
+                text: 'Invalid password!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        <?php elseif ($message == "error_no_user_found"): ?>
+            // Show error alert for no user found
+            Swal.fire({
+                title: 'Error',
+                text: 'No user found with this email!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        <?php endif; ?>
+    </script>
 </body>
 </html>
