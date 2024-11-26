@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -24,13 +25,12 @@ if (!isset($_SESSION['user_id'])) {
             <img src="logo.png" alt="Logo">
         </div>
         <div class="header-links">
-            <a href="home.php">Home</a>
-            <a href="profile.php">Profile</a>
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
             <a href="waste-collection.php">Waste Collection</a>
             <a href="incident-report.php">Incident Report</a>
-            <a href="about.php">About Us</a>
-            <a href="contact.php">Contact</a>
-            <a href="logout.php">Logout</a> 
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
         </div>
     </header>
 
@@ -59,7 +59,10 @@ if (!isset($_SESSION['user_id'])) {
                 <p>This support will be key in achieving the broader goals of SDG 12 and ensuring that all nations contribute to a more sustainable future.</p>
             </div>
         </section>
+        
+        </section>
 
+       
         <section class="stats">
             <div class="stats-content">
                 <h2>Waste Statistics in the Philippines</h2>
@@ -75,6 +78,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </section>
 
+   
         <section class="tips">
             <h2>Tips for Responsible Consumption</h2>
             <div class="tips-content">
@@ -86,6 +90,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </section>
 
+   
         <section class="references">
             <h2>References</h2>
             <div class="references-content">
