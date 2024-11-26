@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
     <title>Waste Collection Report Form</title>
     <link rel="stylesheet" href="forms.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Add Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 </head>
 <body>
     <header>
@@ -128,7 +128,6 @@ if (isset($_POST['submit'])) {
             </div>
         </section>
 
-        <!-- Section for displaying the chart -->
         <section id="chart-section" style="display: none;">
             <h2>Waste Collection Data Chart</h2>
             <canvas id="wasteChart"></canvas>
