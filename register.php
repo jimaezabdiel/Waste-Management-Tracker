@@ -63,7 +63,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="homepage.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
@@ -110,7 +110,7 @@ $conn->close();
                 <li><a href="#">Terms</a></li>
             </ul>
         </div>
-        <p>&copy; 2024 Your Website. All Rights Reserved.</p>
+        <p>&copy; 2024 TRASH SCaNS: Waste Management Tracker</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.all.min.js"></script>
