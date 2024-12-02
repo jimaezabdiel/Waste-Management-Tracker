@@ -26,10 +26,7 @@ if (!isset($_SESSION['user_id'])) {
         <div class="header-links">
             <a href="home.php">Home</a>
             <a href="profile.php">Profile</a>
-            <a href="waste-collection.php">Waste Collection</a>
-            <a href="incident-report.php">Incident Report</a>
-            <a href="about.php">About Us</a>
-            <a href="contact.php">Contact</a>
+            <a href="reuse_hub.php">Reuse Hub</a>
             <a href="logout.php">Logout</a> 
         </div>
     </header>
@@ -97,13 +94,6 @@ if (!isset($_SESSION['user_id'])) {
     </main>
 
     <footer>
-        <div class="footer-links">
-            <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">FAQ</a></li>
-            </ul>
-        </div>
         <div>
             <p>&copy; 2024 TRASH SCaNS: Waste Management Tracker</p>
         </div>
