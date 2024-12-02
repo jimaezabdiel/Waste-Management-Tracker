@@ -7,7 +7,7 @@ class Database {
     private $password = "";
     public $conn;
 
-    public function getConnect() { 
+    public function getConnect() {
         $this->conn = null;
 
         try {
@@ -19,6 +19,7 @@ class Database {
 
         return $this->conn;
     }
+}
 }
 
 // Function to request a waste pickup

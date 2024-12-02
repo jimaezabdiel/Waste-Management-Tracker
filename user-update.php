@@ -8,30 +8,30 @@
         <title>User Profile Update</title>
     </head>
     <body>
-        <div class="user-profile-update">
+        <div class = "user-profile-update">
             <h1>User Profile Update</h1>
-            <form action="" method="post">
-                <label for="full-name">Full Name:</label>
-                <input type="text" id="full-name" name="full-name" required>
+            <form action = "" method = "post">
+                <label for = "full-name">Full Name:</label>
+                <input type = "text" id = "full-name" name = "full-name" required>
 
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
+                <label for = "email">Email Address:</label>
+                <input type = "email" id = "email" name = "email" required>
 
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone">
+                <label for = "phone">Phone Number:</label>
+                <input type = "tel" id = "phone" name = "phone">
 
-                <label for="address">Address:</label>
-                <textarea id="address" name="address" rows="3" required></textarea>
+                <label for = "address">Address:</label>
+                <textarea id = "address" name = "address" rows = "3" required></textarea>
 
-                <label for="password">Change Password (Optional):</label>
-                <input type="password" id="password" name="password">
+                <label for = "password">Change Password (Optional):</label>
+                <input type = "password" id = "password" name = "password">
 
-                <button type="submit">Update Profile</button>
+                <button type = "submit">Update Profile</button>
             </form>
 
 
             <footer>
-                <p><a href="menu.php">Back to Dashboard</a></p> 
+                <p><a href = "menu.php">Back to Dashboard</a></p> 
             </footer>
 
         </div>

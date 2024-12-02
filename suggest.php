@@ -1,5 +1,5 @@
-// Waste analysis 
 <?php
+// Waste analysis
 require_once 'Database.php';
 
 // Initialize database connection

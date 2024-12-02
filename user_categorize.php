@@ -5,9 +5,9 @@
 </head>
 <body>
   <h2>Categorize Your Waste</h2>
-  <form method="post" action="process_categorization.php">
-    <label for="category">Select Category:</label>
-    <select name="category" id="category">
+  <form method = "post" action = "process_categorization.php">
+    <label for = "category">Select Category:</label>
+    <select name = "category" id = "category">
       <?php 
 
         // Fetch categories from db
@@ -18,10 +18,10 @@
       ?>
     </select>
     <br>
-    <label for="quantity">Quantity:</label>
-    <input type="number" name="quantity" id="quantity" required>
+    <label for = "quantity">Quantity:</label>
+    <input type = "number" name = "quantity" id = "quantity" required>
     <br>
-    <input type="submit" value="Categorize"> 1 
+    <input type = "submit" value = "Categorize"> 1 
   </form>
 </body>
 </html>

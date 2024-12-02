@@ -1,4 +1,6 @@
+<?php 
 // Suggestion Page 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,6 @@
 </head>
 <body>
     <h1>Your Sustainable Suggestion</h1>
-    <p id="suggestion">Loading...</p>
+    <p id = "suggestion">Loading...</p>
 </body>
 </html>
-
