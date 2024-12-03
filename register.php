@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the form inputs
     $username = $_POST['username'];
     $email = $_POST['email'];
+    $phone = $_POST['phone'] ?? ''; // Phone is optional
+    $address = $_POST['address'];
     $password = $_POST['password'];
 
     // Check if the email already exists
@@ -36,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Prepare the SQL statement to insert data
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $email, $hashed_password);
+        $stmt = $conn->prepare("INSERT INTO users (username, email, phone, address, password) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $username, $email, $phone, $address, $hashed_password);
 
         // Execute the prepared statement
         if ($stmt->execute()) {
@@ -63,8 +65,9 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="home.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -89,6 +92,14 @@ $conn->close();
                     <div class="field">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" required>
+                    </div>
+                    <div class="field">
+                        <label for="phone">Phone (Optional)</label>
+                        <input type="text" name="phone" id="phone">
+                    </div>
+                    <div class="field">
+                        <label for="address">Address</label>
+                        <textarea name="address" id="address" rows="2" required></textarea>
                     </div>
                     <div class="field">
                         <label for="password">Password</label>

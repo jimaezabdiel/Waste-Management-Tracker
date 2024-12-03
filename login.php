@@ -63,11 +63,11 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="home.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Main content wrapper -->
     <div class="login-container">
         <header>
             <div class="logo">
@@ -75,7 +75,6 @@ $conn->close();
             </div>
         </header>
 
-        <!-- Login form -->
         <main>
             <div class="form-section">
                 <div class="box">
@@ -106,25 +105,20 @@ $conn->close();
         </footer>
     </div>
 
-    <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.all.min.js"></script>
 
     <script>
-        // Check the PHP message for success or error
         <?php if ($message == "success"): ?>
-            // Show SweetAlert2 success message and redirect
             Swal.fire({
                 title: 'Login Successful!',
-                text: 'Redirecting to homepage...',
+                text: 'Directing to homepage...',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 2000 // Time before redirecting (in ms)
+                timer: 2000 
             }).then(() => {
-                // Redirect to homepage after the popup closes
-                window.location.href = "home.php"; // Replace "home.php" with your homepage URL
+                window.location.href = "home.php"; 
             });
         <?php elseif ($message == "error_invalid_password"): ?>
-            // Show error alert for invalid password
             Swal.fire({
                 title: 'Error',
                 text: 'Invalid password!',
@@ -132,7 +126,6 @@ $conn->close();
                 confirmButtonText: 'OK'
             });
         <?php elseif ($message == "error_no_user_found"): ?>
-            // Show error alert for no user found
             Swal.fire({
                 title: 'Error',
                 text: 'No user found with this email!',
