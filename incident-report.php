@@ -1,46 +1,71 @@
 <?php
+// Start the session to retrieve the logged-in user
+session_start();
 
-// Define the file path for incident reports
-$incident_reports_file_path = "incident_reports.json";
-$success_message = '';
+// Check if user is logged in (this assumes you have already set the user_id in the session)
+if (!isset($_SESSION['user_id'])) {
+    // If no user is logged in, you can redirect them to the login page or show an error
+    header("Location: login.php");
+    exit();
+}
 
-// Handle the incident report form submission
-if (isset($_POST['submit'])) {
-    // Get the user input from the form
-    $incident_type = htmlspecialchars($_POST['incident-type']);
-    $incident_location = htmlspecialchars($_POST['incident-location']);
-    $incident_date = htmlspecialchars($_POST['incident-date']);
-    $incident_description = htmlspecialchars($_POST['incident-description']);
-    $incident_photo = isset($_FILES['incident-photo']) ? $_FILES['incident-photo']['name'] : null;
+// Retrieve the user_id from the session
+$user_id = $_SESSION['user_id'];
 
-    // Prepare the new incident report data
-    $new_incident_report = [
-        'incident-type' =>  $incident_type,
-        'incident-location' =>  $incident_location,
-        'incident-date' => $incident_date,
-        'incident-description' => $incident_description,
-        'incident-photo' => $incident_photo,
-    ];
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "user_data";
 
-    // Check if the incident_reports.json file exists
-    if (file_exists($incident_reports_file_path)) {
-        // Read the existing data from the file
-        $json_data = file_get_contents($incident_reports_file_path);
-        $incident_reports = json_decode($json_data, true); // Decode the JSON into an array
-    } else {
-        // If the file doesn't exist, initialize an empty array
-        $incident_reports = [];
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Initialize variables
+$incident_type = $_POST['incident-type'] ?? '';
+$incident_location = $_POST['incident-location'] ?? '';
+$incident_date = $_POST['incident-date'] ?? '';
+$incident_description = $_POST['incident-description'] ?? '';
+$incident_photo = ''; // Initialize variable for the photo
+$success_message = ''; // Initialize success message
+
+// Handle file upload
+if (isset($_FILES['incident-photo']) && $_FILES['incident-photo']['error'] == 0) {
+    // Ensure 'uploads' directory exists
+    $target_dir = "uploads/";
+    if (!is_dir($target_dir)) {
+        mkdir($target_dir, 0777, true); // Create the directory if it doesn't exist
     }
 
-    // Add the new incident report to the existing logs array
-    $incident_reports[] = $new_incident_report;
+    // Handle the uploaded file
+    $target_file = $target_dir . basename($_FILES['incident-photo']['name']);
+    if (move_uploaded_file($_FILES['incident-photo']['tmp_name'], $target_file)) {
+        $incident_photo = $target_file;  // Save the path of the uploaded photo
+    } else {
+        $success_message = "Error uploading photo!";
+    }
+}
 
-    // Save the updated incident report data back to the file
-    file_put_contents($incident_reports_file_path, json_encode($incident_reports, JSON_PRETTY_PRINT));
+// Insert data into the database
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $stmt = $conn->prepare("INSERT INTO incident_reports (user_id, incident_type, incident_location, incident_date, incident_description, incident_photo) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssss", $user_id, $incident_type, $incident_location, $incident_date, $incident_description, $incident_photo);
 
-    // Set success message
-    $success_message = "<p>You have successfully submitted your incident report.</p>";
-    $success_message .= "<a href='javascript:void(0)' id='show-chart-link'>Click here to view the incident report in a chart</a>";
+    // Execute the query
+    if ($stmt->execute()) {
+        $success_message = "Incident report submitted successfully!";
+    } else {
+        $success_message = "Error submitting the incident report!";
+    }
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
 }
 ?>
 
@@ -52,7 +77,7 @@ if (isset($_POST['submit'])) {
     <title>Incident Report Form</title>
     <link rel="stylesheet" href="forms.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
@@ -62,10 +87,11 @@ if (isset($_POST['submit'])) {
         <div class="header-links">
             <a href="home.php">Home</a>
             <a href="profile.php">Profile</a>
-            <a href="collection.php">Waste Collection</a>
+            <a href="waste-collection.php">Waste Collection</a>
             <a href="incident-report.php">Incident Report</a>
             <a href="about.php">About Us</a>
             <a href="contact.php">Contact</a>
+            <a href="logout.php">Logout</a>
         </div>
     </header>
 
@@ -105,11 +131,6 @@ if (isset($_POST['submit'])) {
 
                     <button type="submit" name="submit" class="btn">Submit Report</button>
                 </form>
-                <?php
-                    if ($success_message) {
-                        echo $success_message;
-                    }
-                ?>
             </div>
         </section>
 
@@ -133,54 +154,21 @@ if (isset($_POST['submit'])) {
     </footer>
 
     <script>
-        document.getElementById('show-chart-link').addEventListener('click', function() {
-            // Fetch the incident report data from the PHP file
-            fetch('incident_reports.json')
-                .then(response => response.json())
-                .then(data => {
-                    // Extract data for chart
-                    let labels = [];
-                    let dataPoints = {
-                        'missed-pickup': 0,
-                        'illegal-dumping': 0,
-                        'vehicle-breakdown': 0
-                    };
-
-                    // Count incidents by type
-                    data.forEach(incident => {
-                        labels.push(incident['incident-location']);
-                        dataPoints[incident['incident-type']]++;
-                    });
-
-                    // Create the chart
-                    let ctx = document.getElementById('incidentReport').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: Object.keys(dataPoints),
-                            datasets: [{
-                                label: 'Incident Count',
-                                data: Object.values(dataPoints),
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-
-                    // Show the chart section
-                    document.getElementById('chart-section').style.display = 'block';
-                });
-        });
+        <?php if ($success_message): ?>
+            Swal.fire({
+                icon: 'success',
+                title: '<?php echo $success_message; ?>',
+                showCancelButton: true,
+                confirmButtonText: 'Submit Another Report',
+                cancelButtonText: 'Return to Homepage',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'incident-report.php';
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    window.location.href = 'home.php';
+                }
+            });
+        <?php endif; ?>
     </script>
-
 </body>
 </html>
