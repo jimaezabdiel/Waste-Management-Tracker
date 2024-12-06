@@ -104,7 +104,7 @@ $calendarManager->closeConnection();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Calendar</title>
+    <title>Waste Calendar</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -307,7 +307,11 @@ $calendarManager->closeConnection();
 </head>
 <body>
 
+
 <h1>Waste Calendar</h1>
+
+<h1>Event Calendar</h1>
+
 
 <div class="navigation">
     <a href="home.php">Home</a>
