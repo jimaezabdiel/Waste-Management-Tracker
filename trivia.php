@@ -206,56 +206,55 @@ if (isset($_GET['retry']) && $_GET['retry'] === 'true') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivia and Quiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Include SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: #f9f9f9; 
-    height: 100vh;
-}
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #f9f9f9; 
+            height: 100vh;
+        }
 
-header {
-    background-color: #DDF1E4; /* Updated color */
-    color:#2c6b3f;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    box-shadow: 0 4px 6px rgba(0.1, 0.1, 0.1, 0.1); 
-}
+        header {
+            background-color: #DDF1E4; 
+            color:#2c6b3f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            box-shadow: 0 4px 6px rgba(0.1, 0.1, 0.1, 0.1); 
+        }
 
-header .logo img {
-    width: 120px;
-}
+        header .logo img {
+            width: 120px;
+        }
 
-header .header-links {
-    display: flex;
-    gap: 25px;
-}
+        header .header-links {
+            display: flex;
+            gap: 25px;
+        }
 
-header .header-links a {
-    text-decoration: none;
-    color: #2c6b3f;
-    font-weight: 600;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
+        header .header-links a {
+            text-decoration: none;
+            color: #2c6b3f;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
 
-header .header-links a:hover {
-    color: #d1e4c7; 
-}
-main {
-    padding: 40px 20px;
-    flex-grow: 1; 
-    background-color: #ffffff; 
-    color: #333;
-    text-align: center;
-}
+        header .header-links a:hover {
+            color: #d1e4c7; 
+        }
+        main {
+            padding: 40px 20px;
+            flex-grow: 1; 
+            background-color: #ffffff; 
+            color: #333;
+            text-align: center;
+        }
 
         .question-container, .trivia-container {
             background-color: white;
@@ -277,40 +276,40 @@ main {
             background-color: #4CAF50;
         }
         footer {
-    background-color: #DDF1E4; /* Updated color */
-    color: #2c6b3f;
-    padding: 20px 0;
-    text-align: center;
-}
+            background-color: #DDF1E4; 
+            color: #2c6b3f;
+            padding: 20px 0;
+            text-align: center;
+        }
 
-footer .footer-links {
-    margin-bottom: 10px;
-}
+        footer .footer-links {
+            margin-bottom: 10px;
+        }
 
-footer .footer-links ul {
-    list-style: none;
-    padding: 0;
-}
+        footer .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
 
-footer .footer-links ul li {
-    display: inline;
-    margin-right: 10px;
-}
+        footer .footer-links ul li {
+            display: inline;
+            margin-right: 10px;
+        }
 
-footer .footer-links ul li a {
-    color: #2c6b3f;
-    text-decoration: none;
-    font-weight: 600;
-}
+        footer .footer-links ul li a {
+            color: #2c6b3f;
+            text-decoration: none;
+            font-weight: 600;
+        }
 
-footer .footer-links ul li a:hover {
-    color: #2c6b3f; 
-}
+        footer .footer-links ul li a:hover {
+            color: #2c6b3f; 
+        }
 
-footer p {
-    margin-top: 10px;
-    font-size: 14px;
-}
+        footer p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -362,7 +361,6 @@ footer p {
         <p>&copy; 2024 TRASH SCaNS: Waste Management Tracker</p>
     </footer>
 
-    <!-- SweetAlert2 Script to Show Messages -->
     <script>
         <?php if (isset($_SESSION['alertMessage'])): ?>
             Swal.fire({
