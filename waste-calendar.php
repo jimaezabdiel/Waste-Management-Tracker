@@ -307,7 +307,11 @@ $calendarManager->closeConnection();
 </head>
 <body>
 
+
+<h1>Waste Calendar</h1>
+
 <h1>Event Calendar</h1>
+
 
 <div class="navigation">
     <a href="home.php">Home</a>
