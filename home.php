@@ -7,7 +7,6 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -25,12 +24,12 @@ if (!isset($_SESSION['user_id'])) {
             <img src="logo.png" alt="Logo">
         </div>
         <div class="header-links">
-            <a href="#">Home</a>
-            <a href="#">Profile</a>
-            <a href="waste-collection.php">Waste Collection</a>
-            <a href="incident-report.php">Incident Report</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
+            <a href="home.php">Home</a>
+            <a href="profile.php">Profile</a>
+            <a href="waste-calendar.php">Waste Calendar</a>
+            <a href="reuse_hub.php">Reuse Hub</a>
+            <a href="trivia.php">Trivia</a>
+            <a href="logout.php">Logout</a> 
         </div>
     </header>
 
@@ -59,26 +58,7 @@ if (!isset($_SESSION['user_id'])) {
                 <p>This support will be key in achieving the broader goals of SDG 12 and ensuring that all nations contribute to a more sustainable future.</p>
             </div>
         </section>
-        
-        </section>
 
-       
-        <section class="stats">
-            <div class="stats-content">
-                <h2>Waste Statistics in the Philippines</h2>
-                <div class="stat">
-                    <p><strong>Total Waste Generated:</strong> <span class="stat-value">500,000 tons</span></p>
-                </div>
-                <div class="stat">
-                    <p><strong>Recycled Waste:</strong> <span class="stat-value">150,000 tons</span></p>
-                </div>
-                <div class="stat">
-                    <p><strong>Non-recycled Waste:</strong> <span class="stat-value">350,000 tons</span></p>
-                </div>
-            </div>
-        </section>
-
-   
         <section class="tips">
             <h2>Tips for Responsible Consumption</h2>
             <div class="tips-content">
@@ -90,7 +70,6 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </section>
 
-   
         <section class="references">
             <h2>References</h2>
             <div class="references-content">
@@ -102,13 +81,6 @@ if (!isset($_SESSION['user_id'])) {
     </main>
 
     <footer>
-        <div class="footer-links">
-            <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">FAQ</a></li>
-            </ul>
-        </div>
         <div>
             <p>&copy; 2024 TRASH SCaNS: Waste Management Tracker</p>
         </div>

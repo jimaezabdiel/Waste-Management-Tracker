@@ -47,7 +47,7 @@ main {
 }
 
 .collection-report-form,
-.incident-report-form {
+.incident-report-form, .user-profile-update-form {
     background: #ffffff;
     padding: 30px;
     border-radius: 8px;
@@ -58,7 +58,7 @@ main {
 }
 
 .collection-report-form h1,
-.incident-report-form h1 {
+.incident-report-form h1, .user-profile-update-form h1 {
     font-size: 30px;
     color: #2c6b3f;
     margin-bottom: 20px;
