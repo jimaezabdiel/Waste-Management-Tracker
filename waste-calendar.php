@@ -307,11 +307,7 @@ $calendarManager->closeConnection();
 </head>
 <body>
 
-
 <h1>Waste Calendar</h1>
-
-<h1>Event Calendar</h1>
-
 
 <div class="navigation">
     <a href="home.php">Home</a>
@@ -356,7 +352,7 @@ $calendarManager->closeConnection();
 
                             // Ellipsis and options
                             echo "<div class='event-options'>";
-                            echo "&#x2022;&#x2022;&#x2022;"; // Ellipsis symbol
+                            echo "&#x2022;&#x2022;&#x2022;"; 
                             echo "<div class='options-menu'>";
                             echo "<form method='POST' action=''>";
                             echo "<input type='hidden' name='event_id' value='{$event['id']}'>";
